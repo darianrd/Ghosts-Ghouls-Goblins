@@ -55,8 +55,8 @@ rf_preds <- final_workflow |>
 # Prep for Kaggle submission
 kaggle_sub <- rf_preds %>%
   bind_cols(., GGGtest) |> # Bind predictions to test data
-  rename(type = .pred_class) |> # Rename .pred_1 to ACTION for Kaggle submission
-  select(id, type) # Keep id and ACTION variables
+  rename(type = .pred_class) |> # Rename .pred_class to type for Kaggle submission
+  select(id, type) # Keep id and type variables
 
 # Write out file
 vroom_write(x = kaggle_sub, file = "./RFPreds.csv", delim = ",")
